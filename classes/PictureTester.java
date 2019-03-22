@@ -50,6 +50,41 @@ public class PictureTester
     swan.edgeDetection(10);
     swan.explore();
   }
+
+  public static void testFixUnderwater(){
+    Picture water= new Picture("water.jpg");
+    water.explore();
+    water.fixUnderwater();;
+    water.explore();
+  }
+
+  public static void testMirrorRightToLeft(){
+    Picture temple= new Picture("temple.jpg");
+    temple.explore();
+    temple.mirrorRightToLeft();
+    temple.explore();
+  }
+
+  public static void testMirrorHorizontal(){
+    Picture motorcycle= new Picture("redMotorcycle.jpg");
+    motorcycle.explore();
+    motorcycle.mirrorHorizontal();
+    motorcycle.explore();
+  }
+
+  public static void testMirrorBottomToTop(){
+    Picture motorcycle= new Picture("redMotorcycle.jpg");
+    motorcycle.explore();
+    motorcycle.mirrorBottomToTop();
+    motorcycle.explore();
+  }
+
+  public static void testMirrorDiagonal(){
+    Picture motorcycle= new Picture("redMotorcycle.jpg");
+    motorcycle.explore();
+    motorcycle.mirrorDiagonal();
+    motorcycle.explore();
+  }
   
   /** Main method for testing.  Every class can have a main
     * method in Java */
@@ -66,10 +101,13 @@ public class PictureTester
     //testGrayscale();
     //testFixUnderwater();
     //testMirrorVertical();
+  // testMirrorHorizontal();
+   // testMirrorBottomToTop();
+  //  testMirrorRightToLeft();
     //testMirrorTemple();
     //testMirrorArms();
     //testMirrorGull();
-    //testMirrorDiagonal();
+    testMirrorDiagonal();
     //testCollage();
     //testCopy();
     //testEdgeDetection();

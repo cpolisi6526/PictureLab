@@ -129,7 +129,63 @@ public class Picture extends SimplePicture
       }
     } 
   }
-  
+
+  public void mirrorRightToLeft() {
+      Pixel[][] pixels = this.getPixels2D();
+      Pixel leftPixel = null;
+      Pixel rightPixel = null;
+      int width = pixels[0].length;
+      for (int row = 0; row < pixels.length; row++) {
+          for (int col = 0; col < width / 2; col++) {
+              leftPixel = pixels[row][col];
+              rightPixel = pixels[row][width - 1 - col];
+              leftPixel.setColor(rightPixel.getColor());
+          }
+      }
+  }
+
+  public void mirrorHorizontal(){
+      Pixel[][] pixels= this.getPixels2D();
+      Pixel topPixel= null;
+      Pixel botPixel= null;
+      int height= pixels.length;
+      for(int row=0; row<pixels.length;row++){
+          for(int col=0;col<pixels[0].length;col++){
+              topPixel= pixels[row][col];
+              botPixel= pixels[height-1-row][col];
+              botPixel.setColor(topPixel.getColor());
+          }
+      }
+  }
+
+  public void mirrorBottomToTop(){
+      Pixel[][] pixels= this.getPixels2D();
+      Pixel topPixel= null;
+      Pixel botPixel= null;
+      int height= pixels.length;
+      for(int row=0; row<pixels.length;row++){
+          for(int col=0;col<pixels[0].length;col++){
+              topPixel= pixels[row][col];
+              botPixel=pixels[height-1-row][col];
+              topPixel.setColor(botPixel.getColor());
+          }
+      }
+  }
+
+  public void mirrorDiagonal(){
+      Pixel[][] pixels= this.getPixels2D();
+      Pixel topPixel=null;
+      Pixel botPixel= null;
+      int height=pixels.length;
+      int width=pixels[0].length;
+      for(int row=0; row<pixels.length;row++) {
+          for (int col = 0; col < pixels[0].length; col++) {
+              topPixel = pixels[row][col];
+              botPixel = pixels[height - 1 - row][width - 1 - col];
+              botPixel.setColor(topPixel.getColor());
+          }
+      }
+  }
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
   {
@@ -275,9 +331,9 @@ public class Picture extends SimplePicture
               r = pixels[row][col].getRed();
               g = pixels[row][col].getGreen();
               b = pixels[row][col].getBlue();
-              pixels[row][col].setGreen(g);
-              pixels[row][col].setRed(r+20);
-              pixels[row][col].setBlue(b-20);
+              pixels[row][col].setGreen(g-15);
+              pixels[row][col].setRed(r+50);
+              pixels[row][col].setBlue(b+10);
           }
       }
   }
