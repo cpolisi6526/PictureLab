@@ -270,6 +270,26 @@ public class Picture extends SimplePicture
     }   
   }
 
+  public void copy(Picture fromPic, int startRow, int startCol, int endRow, int endCol) {
+      Pixel fromPixel = null;
+      Pixel toPixel = null;
+      Pixel[][] toPixels = this.getPixels2D();
+      Pixel[][] fromPixels = fromPic.getPixels2D();
+      for (int fromRow = 0, toRow = startRow;
+           fromRow < fromPixels.length &&
+                   toRow < endRow;
+           fromRow++, toRow++) {
+          for (int fromCol = 0, toCol = startCol;
+               fromCol < fromPixels[0].length &&
+                       toCol < endCol;
+               fromCol++, toCol++) {
+              fromPixel=fromPixels[fromRow][fromCol];
+              toPixel=toPixels[toRow][toCol];
+              toPixel.setColor(fromPixel.getColor());
+          }
+      }
+  }
+
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
@@ -286,7 +306,21 @@ public class Picture extends SimplePicture
     this.mirrorVertical();
     this.write("collage.jpg");
   }
-  
+
+  public void createCollage2(){
+      Picture mark= new Picture("blue-mark.jpg");
+      Picture barb= new Picture("barbaraS.jpg");
+      this.copy(mark,0,0);
+      this.copy(barb,100,0);
+      Picture blueBarb=new Picture(barb);
+      blueBarb.keepOnlyBlue();
+      this.copy(blueBarb,200,0);
+      Picture negMark= new Picture(mark);
+      negMark.negate();
+      this.copy(negMark,300,0);
+      this.mirrorVertical();
+      this.write("mandb");
+  }
   
   /** Method to show large changes in color 
     * @param edgeDist the distance for finding edges
